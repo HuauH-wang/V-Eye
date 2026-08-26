@@ -1,0 +1,135 @@
+.sos-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  min-height: 0;
+}
+
+.sos-warning-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.85rem 1rem;
+  background: #fef3c7;
+}
+
+.sos-warning-banner p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.sos-submit-btn {
+  margin-top: 0.25rem;
+}
+
+.sos-history {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.sos-history-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.sos-history-head h3 {
+  margin: 0;
+}
+
+.sos-history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.sos-history-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem 1rem;
+  align-items: start;
+  padding: 0.65rem 0.75rem;
+  border: var(--border);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.sos-history-row.unattributed {
+  background: #fff9db;
+}
+
+.sos-history-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.sos-history-main strong {
+  font-size: 0.95rem;
+}
+
+.sos-history-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.sos-delete-btn {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.45rem;
+}
+
+.sos-tag {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border: 2px solid var(--ink);
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: #fecaca;
+}
+
+.sos-tag.muted-tag {
+  background: #fff;
+}
+
+.report-preview-box {
+  padding: 0.75rem 1rem;
+  background: var(--accent-soft);
+  border: 2px dashed rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.report-preview-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.report-preview-hint {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #b45309;
+}

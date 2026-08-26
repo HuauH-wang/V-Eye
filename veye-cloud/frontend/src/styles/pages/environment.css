@@ -1,0 +1,168 @@
+.env-tab-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.env-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.env-metric {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  padding: 1rem 1.1rem;
+}
+
+.env-metric-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(64, 145, 108, 0.14), rgba(123, 213, 226, 0.12));
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.env-metric-label {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.env-metric-value {
+  margin: 0.15rem 0 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  color: var(--ink);
+}
+
+.env-metric-hint {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+}
+
+.env-section-head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.5rem;
+}
+
+.env-section-head h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.env-location p {
+  margin: 0.25rem 0;
+}
+
+.env-updated {
+  font-size: 0.82rem;
+}
+
+.env-imu-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .env-imu-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.env-imu-title {
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.env-imu p {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.88rem;
+}
+
+/* 小欧浮泡（运动页） */
+.xiaoou-bubble-panel {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.xiaoou-bubble-panel--compact {
+  gap: 0.75rem;
+}
+
+.xiaoou-bubble-only {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #e8fbff 0%, #7bd5e2 42%, #40916c 100%);
+  box-shadow:
+    0 8px 22px rgba(64, 145, 108, 0.22),
+    inset 0 -6px 14px rgba(27, 67, 50, 0.12);
+  animation: xiaoou-float 2.6s ease-in-out infinite;
+}
+
+.xiaoou-bubble-only--compact {
+  width: 64px;
+  height: 64px;
+}
+
+.xiaoou-bubble-only .xiaoou-ripple {
+  inset: 0;
+  border-radius: 50%;
+}
+
+.xiaoou-bubble-glyph {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.65rem;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 4px rgba(27, 67, 50, 0.25);
+  pointer-events: none;
+}
+
+.xiaoou-bubble-only--compact .xiaoou-bubble-glyph {
+  font-size: 1.2rem;
+}
+
+.xiaoou-bubble-copy {
+  min-width: 0;
+}
+
+.xiaoou-bubble-name {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.xiaoou-bubble-meta,
+.xiaoou-bubble-steps {
+  margin: 0.2rem 0 0;
+  font-size: 0.88rem;
+}
+
+.xiaoou-bubble-msg {
+  margin: 0.45rem 0 0;
+  color: var(--ink);
+}

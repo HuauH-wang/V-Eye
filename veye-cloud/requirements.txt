@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic-settings
+pillow
+opencv-python-headless
+httpx
+psycopg[binary]
+sqlalchemy
+alembic
+vllm
+bcrypt
+PyJWT
+qrcode[pil]

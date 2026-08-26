@@ -1,0 +1,170 @@
+.map-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-height: calc(100vh - 8.5rem);
+}
+
+.map-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.25rem;
+  align-items: flex-end;
+  padding: 0.85rem 1rem;
+}
+
+.map-toolbar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 8rem;
+}
+
+.map-toolbar-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.map-select {
+  min-width: 11rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: var(--border);
+  background: #fff;
+  color: var(--ink);
+}
+
+.map-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.map-chip-row .chip {
+  border: var(--border);
+  background: var(--surface-muted);
+  color: var(--ink);
+  font-size: 0.78rem;
+  padding: 0.28rem 0.65rem;
+}
+
+.map-chip-row .chip.active {
+  border-color: var(--primary-light);
+  background: var(--accent-soft);
+  color: var(--primary);
+}
+
+.map-chip-row .chip.sos.active {
+  border-color: rgba(231, 111, 81, 0.45);
+  background: rgba(231, 111, 81, 0.12);
+  color: #9a3412;
+}
+
+.map-chip-row .chip.members.active {
+  border-color: rgba(45, 106, 79, 0.45);
+}
+
+.map-toolbar-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.map-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  padding: 0 0.15rem;
+}
+
+.map-stage {
+  flex: 1;
+  min-height: 28rem;
+  padding: 0;
+  overflow: hidden;
+}
+
+.obs-map-canvas,
+.obs-map-canvas .leaflet-container {
+  width: 100%;
+  height: min(72vh, 760px);
+  min-height: 28rem;
+  background: #dfe8e3;
+}
+
+.obs-map-canvas--amap,
+.obs-map-canvas--amap .amap-container {
+  width: 100%;
+  height: min(72vh, 760px);
+  min-height: 28rem;
+}
+
+.obs-map-marker-wrap {
+  background: transparent;
+  border: none;
+}
+
+.obs-map-marker--sos-star {
+  --marker-color: #d62828;
+  background: radial-gradient(circle at 35% 30%, #ff6b6b, #d62828 55%, #9d0208);
+  color: #fff7ed;
+  font-size: 1rem;
+  line-height: 1;
+  box-shadow: 0 0 0 2px rgba(214, 40, 40, 0.35), 0 4px 12px rgba(157, 2, 8, 0.35);
+}
+
+.obs-map-marker {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: var(--marker-color, var(--primary));
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  box-shadow: 0 2px 10px rgba(8, 28, 21, 0.28);
+}
+
+.obs-map-marker--task {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.82rem;
+  border-width: 2.5px;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85), 0 3px 12px rgba(8, 28, 21, 0.32);
+}
+
+.obs-map-marker--start {
+  border-style: dashed;
+}
+
+.map-hint {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.gps-settings-card {
+  margin-top: 0.5rem;
+}
+
+.gps-settings-card .field input {
+  font-family: var(--mono);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 900px) {
+  .map-toolbar-actions {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .obs-map-canvas {
+    height: 52vh;
+    min-height: 20rem;
+  }
+}

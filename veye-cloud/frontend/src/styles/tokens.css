@@ -1,0 +1,35 @@
+:root {
+  --bg: #fafaf7;
+  --surface: #ffffff;
+  --surface-muted: #f0f4f1;
+  --primary: #1b4332;
+  --primary-light: #40916c;
+  --accent-soft: #d8f3dc;
+  --accent: var(--accent-soft);
+  --accent-warm: #f4a261;
+  --warn: #f4a261;
+  --danger: #e76f51;
+  --safe: #52b788;
+  --ink: #1a2e1a;
+  --muted: #5c6b5c;
+  --border-color: rgba(27, 67, 50, 0.12);
+  --border: 1px solid var(--border-color);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 3px rgba(27, 67, 50, 0.08);
+  --shadow-md: 0 4px 14px rgba(27, 67, 50, 0.1);
+  --shadow: var(--shadow-md);
+  --font: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "DM Sans", "Source Sans 3", system-ui, sans-serif;
+  --mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+  --focus-ring: 0 0 0 3px rgba(64, 145, 108, 0.35);
+  --risk-0-bg: rgba(82, 183, 136, 0.18);
+  --risk-0-fg: #1b4332;
+  --risk-1-bg: rgba(149, 213, 178, 0.35);
+  --risk-1-fg: #1b4332;
+  --risk-2-bg: rgba(244, 162, 97, 0.28);
+  --risk-2-fg: #9a3412;
+  --risk-3-bg: rgba(231, 111, 81, 0.22);
+  --risk-3-fg: #9b2226;
+}

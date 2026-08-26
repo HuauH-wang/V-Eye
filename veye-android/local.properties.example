@@ -1,0 +1,12 @@
+# 复制为 local.properties（已在 .gitignore，勿提交 Git）
+sdk.dir=/path/to/Android/sdk
+
+# Release 签名（运行 ./scripts/setup_release_signing.sh 自动生成）
+RELEASE_STORE_FILE=keystore/veye-release.keystore
+RELEASE_STORE_PASSWORD=your-store-password
+RELEASE_KEY_ALIAS=veye
+RELEASE_KEY_PASSWORD=your-key-password
+
+# 高德 Android Key（接入地图 SDK 后使用，与 Web Key 不同）
+AMAP_API_KEY_RELEASE=your-amap-android-release-key
+AMAP_API_KEY_DEBUG=your-amap-android-debug-key

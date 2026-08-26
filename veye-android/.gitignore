@@ -1,0 +1,13 @@
+# Jupyter / IDE noise in source tree
+**/.ipynb_checkpoints/
+
+# Gradle / Android
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+keystore/
+*.keystore
+*.jks
+

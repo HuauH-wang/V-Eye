@@ -1,0 +1,46 @@
+{
+  "frameWidth": 128,
+  "frameHeight": 128,
+  "animations": {
+    "idle": {
+      "drawable": "xiaoou_idle",
+      "frameCount": 6,
+      "fps": 6
+    },
+    "wave": {
+      "drawable": "xiaoou_wave",
+      "frameCount": 6,
+      "fps": 8
+    },
+    "happy": {
+      "drawable": "xiaoou_happy",
+      "frameCount": 6,
+      "fps": 8
+    },
+    "exercising": {
+      "drawable": "xiaoou_exercising",
+      "frameCount": 6,
+      "fps": 10
+    },
+    "worried": {
+      "drawable": "xiaoou_worried",
+      "frameCount": 6,
+      "fps": 6
+    },
+    "think": {
+      "drawable": "xiaoou_think",
+      "frameCount": 6,
+      "fps": 5
+    },
+    "point": {
+      "drawable": "xiaoou_point",
+      "frameCount": 6,
+      "fps": 7
+    },
+    "sleep": {
+      "drawable": "xiaoou_sleep",
+      "frameCount": 6,
+      "fps": 4
+    }
+  }
+}

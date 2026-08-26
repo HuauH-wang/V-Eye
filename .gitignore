@@ -1,0 +1,52 @@
+# Secrets — never commit
+.env
+.env.local
+.env.*.local
+frontend/.env
+local.properties
+keystore/
+*.keystore
+*.jks
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Web build output
+app/static/web/
+frontend/dist/
+
+# Logs & runtime data
+logs/
+*.log
+
+# IDE / OS
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+**/.ipynb_checkpoints/
+
+# Android / Gradle
+.gradle/
+build/
+**/build/
+dist/
+*.apk
+*.aab
+*.dex
+
+# Large local caches (not part of source)
+/data/

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1B4332"/>
+      <stop offset="55%" stop-color="#2D6A4F"/>
+      <stop offset="100%" stop-color="#40916C"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#D8F3DC" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#95D5B2" stop-opacity="0.08"/>
+    </linearGradient>
+    <pattern id="vein" width="48" height="48" patternUnits="userSpaceOnUse" patternTransform="rotate(12)">
+      <path d="M0 24 Q12 8 24 24 T48 24" stroke="#D8F3DC" stroke-opacity="0.12" stroke-width="1"/>
+      <path d="M24 0 Q28 16 24 24 T24 48" stroke="#D8F3DC" stroke-opacity="0.08" stroke-width="0.75"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="1000" fill="url(#sky)"/>
+  <rect width="800" height="1000" fill="url(#vein)"/>
+  <ellipse cx="620" cy="180" rx="220" ry="180" fill="url(#glow)"/>
+  <circle cx="180" cy="780" r="160" fill="#52B788" fill-opacity="0.12"/>
+  <path d="M120 720 C180 640 260 660 320 720 C380 780 420 860 360 920 C280 980 140 920 120 720Z" fill="#1B4332" fill-opacity="0.35"/>
+  <path d="M480 760 C540 690 620 710 660 780 C700 850 640 930 560 940 C470 952 420 860 480 760Z" fill="#081C15" fill-opacity="0.28"/>
+  <path d="M400 420 C430 360 470 340 510 360 C560 385 580 430 560 470 C535 520 470 530 430 500 C390 470 370 460 400 420Z" fill="#95D5B2" fill-opacity="0.55"/>
+  <path d="M400 420 L400 560" stroke="#D8F3DC" stroke-width="3" stroke-linecap="round" stroke-opacity="0.7"/>
+  <path d="M400 460 C360 450 330 470 310 500" stroke="#D8F3DC" stroke-width="2" stroke-linecap="round" stroke-opacity="0.55"/>
+  <path d="M400 480 C440 470 470 490 490 520" stroke="#D8F3DC" stroke-width="2" stroke-linecap="round" stroke-opacity="0.55"/>
+  <path d="M400 500 C370 520 350 550 340 580" stroke="#D8F3DC" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.45"/>
+  <path d="M400 510 C430 530 450 560 460 590" stroke="#D8F3DC" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.45"/>
+  <circle cx="400" cy="420" r="118" stroke="#D8F3DC" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="8 10"/>
+  <circle cx="400" cy="420" r="78" stroke="#D8F3DC" stroke-opacity="0.18" stroke-width="1"/>
+  <path d="M330 320 L470 320 L470 360 L350 360 L330 320Z" fill="#FAFAF7" fill-opacity="0.12"/>
+  <path d="M350 280 L430 280 L430 310 L370 310 L350 280Z" fill="#FAFAF7" fill-opacity="0.08"/>
+</svg>

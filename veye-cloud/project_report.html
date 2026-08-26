@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>V-Eye Cloud 项目交付报告</title>
+    <style>
+      :root{
+        --bg:#0b0f1a;
+        --panel:#111830;
+        --panel2:#0f152a;
+        --text:#e8ecff;
+        --muted:#a9b3da;
+        --accent:#7cf7d4;
+        --accent2:#7aa7ff;
+        --danger:#ff6b8a;
+        --warn:#ffd07a;
+        --border:rgba(255,255,255,.08);
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      }
+      html,body{height:100%;}
+      body{
+        margin:0;
+        font-family:var(--sans);
+        background:
+          radial-gradient(900px 500px at 15% 5%, rgba(122,167,255,.16), transparent 60%),
+          radial-gradient(900px 500px at 85% 10%, rgba(124,247,212,.12), transparent 55%),
+          radial-gradient(900px 500px at 50% 85%, rgba(255,208,122,.08), transparent 55%),
+          var(--bg);
+        color:var(--text);
+        line-height:1.6;
+      }
+      a{color:var(--accent2); text-decoration:none;}
+      a:hover{text-decoration:underline;}
+      .wrap{max-width:1080px; margin:0 auto; padding:28px 18px 60px;}
+      header{
+        display:flex; gap:16px; align-items:flex-end; justify-content:space-between;
+        border:1px solid var(--border);
+        background:linear-gradient(180deg, rgba(17,24,48,.85), rgba(17,24,48,.55));
+        border-radius:16px;
+        padding:18px 18px 16px;
+        box-shadow:0 18px 50px rgba(0,0,0,.35);
+      }
+      header .title{
+        display:flex; flex-direction:column; gap:4px;
+      }
+      h1{margin:0; font-size:20px; letter-spacing:.2px;}
+      .sub{color:var(--muted); font-size:13px;}
+      .badgeRow{display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end;}
+      .badge{
+        font-size:12px;
+        padding:6px 10px;
+        border:1px solid var(--border);
+        border-radius:999px;
+        background:rgba(15,21,42,.75);
+        color:var(--muted);
+      }
+      .badge strong{color:var(--text); font-weight:600;}
+      .grid{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:14px;
+        margin-top:14px;
+      }
+      @media (min-width: 980px){
+        .grid{grid-template-columns: 1.1fr .9fr;}
+      }
+      .card{
+        border:1px solid var(--border);
+        border-radius:16px;
+        background:linear-gradient(180deg, rgba(15,21,42,.88), rgba(15,21,42,.62));
+        padding:16px 16px 14px;
+        box-shadow:0 14px 40px rgba(0,0,0,.28);
+      }
+      .card h2{
+        margin:0 0 10px;
+        font-size:15px;
+        letter-spacing:.2px;
+        color:var(--text);
+        display:flex; gap:10px; align-items:center;
+      }
+      .dot{
+        width:10px; height:10px; border-radius:50%;
+        background:var(--accent);
+        box-shadow:0 0 0 4px rgba(124,247,212,.12);
+      }
+      .dot.warn{background:var(--warn); box-shadow:0 0 0 4px rgba(255,208,122,.12);}
+      .dot.danger{background:var(--danger); box-shadow:0 0 0 4px rgba(255,107,138,.12);}
+      .kv{
+        display:grid;
+        grid-template-columns: 150px 1fr;
+        gap:8px 12px;
+        font-size:13px;
+      }
+      .k{color:var(--muted);}
+      .v{color:var(--text); word-break:break-word;}
+      code, pre{
+        font-family:var(--mono);
+        font-size:12.5px;
+      }
+      pre{
+        margin:10px 0 0;
+        padding:12px;
+        border-radius:14px;
+        border:1px solid var(--border);
+        background:rgba(17,24,48,.55);
+        overflow:auto;
+      }
+      .list{
+        margin:0;
+        padding-left:18px;
+        color:var(--text);
+        font-size:13px;
+      }
+      .list li{margin:6px 0;}
+      .muted{color:var(--muted);}
+      .hr{
+        height:1px; background:var(--border);
+        margin:12px 0;
+      }
+      .pill{
+        display:inline-block;
+        padding:2px 8px;
+        border-radius:999px;
+        border:1px solid var(--border);
+        background:rgba(17,24,48,.45);
+        color:var(--muted);
+        font-size:12px;
+        margin-left:6px;
+      }
+      footer{
+        margin-top:16px;
+        color:var(--muted);
+        font-size:12px;
+      }
+      .ok{color:var(--accent);}
+      .warnTxt{color:var(--warn);}
+      .dangerTxt{color:var(--danger);}
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="title">
+          <h1>V-Eye Cloud（FastAPI + vLLM + PostgreSQL）项目交付报告</h1>
+          <div class="sub">
+            目标：Android 端调用 6006 公网 API → 内部 vLLM(8001) 多模态推理 → PostgreSQL(5432) 落库
+          </div>
+        </div>
+        <div class="badgeRow">
+          <div class="badge"><strong>API</strong> 6006</div>
+          <div class="badge"><strong>vLLM</strong> 8001</div>
+          <div class="badge"><strong>PostgreSQL</strong> 5432</div>
+          <div class="badge"><strong>模型</strong> Qwen/Qwen2.5-VL-7B-Instruct</div>
+        </div>
+      </header>
+
+      <div class="grid">
+        <section class="card">
+          <h2><span class="dot"></span>当前运行状态（已验证）</h2>
+          <div class="kv">
+            <div class="k">API（FastAPI）</div>
+            <div class="v">
+              <span class="ok">运行中</span>（监听：<code>127.0.0.1:6006</code>）
+              <span class="pill">/health OK</span>
+            </div>
+
+            <div class="k">vLLM（OpenAI 兼容）</div>
+            <div class="v">
+              <span class="ok">运行中</span>（监听：<code>127.0.0.1:8001</code>）
+              <span class="pill">/v1/models OK</span>
+            </div>
+
+            <div class="k">PostgreSQL</div>
+            <div class="v">
+              <span class="ok">监听中</span>（<code>127.0.0.1:5432</code>）
+              <span class="pill">DB 不可用时接口会返回 503</span>
+            </div>
+
+            <div class="k">端到端识别</div>
+            <div class="v">
+              <span class="ok">已跑通</span>（<code>POST /vision/identify</code> 返回结构化 JSON；示例耗时约 18s）
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="muted" style="font-size:13px;">
+            说明：曾遇到 vLLM 启动阶段 CUDA OOM 与 KV cache 内存不足问题，最终通过降低 <code>max-model-len</code>、
+            设置 <code>--enforce-eager</code>、并调整 <code>gpu-memory-utilization</code> 解决，确保稳定启动。
+          </div>
+        </section>
+
+        <section class="card">
+          <h2><span class="dot warn"></span>关键路径与文件</h2>
+          <ul class="list">
+            <li><strong>项目根目录</strong>：<code>/root/veye-cloud</code></li>
+            <li><strong>FastAPI 应用</strong>：<code>/root/veye-cloud/app/main.py</code></li>
+            <li><strong>VLM 客户端</strong>：<code>/root/veye-cloud/app/vlm_client.py</code></li>
+            <li><strong>数据库</strong>：<code>/root/veye-cloud/app/db.py</code> + <code>models.py</code></li>
+            <li><strong>配置</strong>：<code>/root/veye-cloud/.env</code>（<code>VLLM_BASE_URL</code>, <code>VLLM_MODEL</code>, <code>DATABASE_URL</code> 等）</li>
+            <li><strong>模型目录（本地）</strong>：
+              <code>/root/autodl-tmp/.cache/modelscope/models/Qwen/Qwen2.5-VL-7B-Instruct</code>
+            </li>
+            <li><strong>启动脚本</strong>：
+              <code>scripts/start_api.sh</code>,
+              <code>scripts/start_vllm.sh</code>,
+              <code>scripts/start_all.sh</code>
+            </li>
+            <li><strong>vLLM 保守启动脚本（本次用于稳定启动）</strong>：<code>scripts/run_vllm_direct.sh</code></li>
+            <li><strong>日志</strong>：
+              <code>/root/veye-cloud/logs/api.log</code>,
+              <code>/root/veye-cloud/logs/vllm_direct.log</code>,
+              <code>/root/veye-cloud/logs/vllm.log</code>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <section class="card" style="margin-top:14px;">
+        <h2><span class="dot"></span>架构概览</h2>
+        <pre><code>Android App (Jetpack Compose)
+        |
+        |  HTTP (公网/反代) :6006
+        v
+FastAPI Gateway (veye-cloud)
+  - /vision/identify  (图片 + scene) → 调 vLLM → 结构化 JSON → 落库
+  - /sos              (事件上报) → 落库
+        |
+        |  HTTP (内网) 127.0.0.1:8001
+        v
+vLLM OpenAI-Compatible Server
+  - /v1/chat/completions (image_url data:URL)
+  - /v1/models
+        |
+        |  TCP (内网) 127.0.0.1:5432
+        v
+PostgreSQL (IdentifyRecord / SosEvent)</code></pre>
+      </section>
+
+      <div class="grid" style="margin-top:14px;">
+        <section class="card">
+          <h2><span class="dot"></span>接口清单</h2>
+          <ul class="list">
+            <li><code>GET /health</code>：健康检查（返回 vLLM base_url、当前 model）</li>
+            <li><code>POST /vision/identify</code>：图片识别（multipart form）</li>
+            <li><code>POST /sos</code>：SOS/事件上报（JSON body）</li>
+          </ul>
+          <div class="hr"></div>
+          <div class="muted" style="font-size:13px;">
+            <strong>scene 枚举</strong>：<code>toxic_plant</code> / <code>medicine</code> / <code>generic</code>（其它值会返回 422）
+          </div>
+        </section>
+
+        <section class="card">
+          <h2><span class="dot warn"></span>启动方式（常用命令）</h2>
+          <div class="muted" style="font-size:13px;">在服务器上执行（默认在 <code>/root/veye-cloud</code>）：</div>
+          <pre><code># 1) 启动 vLLM（常规脚本）
+cd /root/veye-cloud
+source .venv/bin/activate
+./scripts/start_vllm.sh
+
+# 2) vLLM 若因显存/缓存不稳定，可用“保守参数”启动脚本
+./scripts/run_vllm_direct.sh
+
+# 3) 启动 API
+./scripts/start_api.sh
+
+# 4) 快速自检
+curl -sS http://127.0.0.1:8001/v1/models | head
+curl -sS http://127.0.0.1:6006/health</code></pre>
+        </section>
+      </div>
+
+      <section class="card" style="margin-top:14px;">
+        <h2><span class="dot"></span>本次关键修复点（从问题到结果）</h2>
+        <ul class="list">
+          <li><strong>模型获取</strong>：服务器无法访问 HuggingFace → 使用 ModelScope 下载到 <code>/root/autodl-tmp</code>，避免根盘空间不足。</li>
+          <li><strong>vLLM 参数兼容</strong>：<code>--limit-mm-per-prompt</code> 需要 JSON 字符串（如 <code>{"image": 1}</code>）。</li>
+          <li><strong>vLLM 启动 OOM</strong>：启动阶段显存不足/引擎 warmup OOM → 调参（降低 <code>max-model-len</code>、<code>max-num-seqs</code>、启用 <code>--enforce-eager</code>、调整 <code>gpu-memory-utilization</code>）后成功启动。</li>
+          <li><strong>鉴权</strong>：API Key 设为可选（为空则不鉴权）。</li>
+          <li><strong>数据库可用性</strong>：DB 不可用时服务允许启动；需要落库的接口会返回 <code>503 database_unavailable</code>。</li>
+          <li><strong>端到端验证</strong>：<code>/vision/identify</code> 已返回结构化 JSON（含 <code>label_main</code>、<code>risk_level</code>、<code>summary</code>、<code>latency_ms</code>）。</li>
+        </ul>
+      </section>
+
+      <section class="card" style="margin-top:14px;">
+        <h2><span class="dot warn"></span>当前 vLLM 运行参数（为稳定启动而偏保守）</h2>
+        <pre><code>--host 127.0.0.1
+--port 8001
+--dtype bfloat16
+--enforce-eager
+--gpu-memory-utilization 0.80
+--max-model-len 1024
+--max-num-seqs 1
+--limit-mm-per-prompt {"image": 1}</code></pre>
+        <div class="muted" style="font-size:13px; margin-top:8px;">
+          这套参数优先保证“能稳定跑起来”。如果你希望更高并发/更长上下文，我可以基于显存余量逐步上调并做验证。
+        </div>
+      </section>
+
+      <footer>
+        <div>文件位置：<code>/root/veye-cloud/project_report.html</code></div>
+        <div class="muted">提示：可用 <code>python3 -m http.server</code> 或任意方式在浏览器中打开此 HTML。</div>
+      </footer>
+    </div>
+  </body>
+</html>
+
