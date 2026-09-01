@@ -1,23 +1,17 @@
 # V-Eye
 
-面向户外/野外场景的智能识别与团队协作系统：**云端推理服务** + **Android 客户端**，通过 BLE 手表/相机采集图像并调用多模态大模型完成识别、SOS 上报与队伍协作。
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-本仓库为 **veye-cloud**（云端）与 **veye-android**（Android App）的 monorepo 整理版，源代码保持原样，仅新增根目录说明与 `.gitignore`。
+面向户外/野外场景的**智能识别与团队协作**系统。ESP32 手表/相机通过 BLE 采集图像，Android 客户端上传至云端，由多模态大模型完成识图、SOS 上报与队伍协作。
 
-## 仓库结构
+## 功能概览
 
-```
-veye/
-├── veye-cloud/          # 云端：FastAPI + vLLM + PostgreSQL + Web 控制台
-├── veye-android/        # Android：Jetpack Compose + BLE + Room
-├── README.md            # 本文件
-└── .gitignore
-```
-
-| 子项目 | 说明 | 详细文档 |
-|--------|------|----------|
-| [veye-cloud](./veye-cloud/) | AutoDL 部署的云端 API、VLM 识图、Web 管理台 | [veye-cloud/README.md](./veye-cloud/README.md) |
-| [veye-android](./veye-android/) | 手机端 App：BLE 联机、云端识别、图鉴、组队、地图等 | [veye-android/README.md](./veye-android/README.md) |
+- **智能识图** — 有毒植物、药用植物、通用场景识别（Qwen2.5-VL）
+- **BLE 联机** — ESP32-C3 手表/相机，GATT 分片传图协议
+- **团队协作** — 组队、群聊、地图轨迹、位置共享
+- **SOS 上报** — 紧急情况一键上报
+- **AI 报告** — 基于 LLM 的工作报告生成
+- **多端支持** — Android 客户端 + Web 控制台
 
 ## 系统架构
 
@@ -29,15 +23,38 @@ veye/
                                                │ HTTPS
                                                ▼
 ┌──────────────────────────────────────────────────────────┐
-│                    veye-cloud (AutoDL)                    │
+│                    veye-cloud                             │
 │  FastAPI :6006  ──►  vLLM :8001 (识图) / :8002 (报告)    │
 │       │                                                   │
 │       └──►  PostgreSQL :5432                              │
-│  frontend/ ──► Web 控制台（可选构建进 API 静态目录）        │
+│  frontend/ ──► Web 控制台                                 │
 └──────────────────────────────────────────────────────────┘
 ```
 
+## 仓库结构
+
+```
+veye/
+├── veye-cloud/          # 云端：FastAPI + vLLM + PostgreSQL + Web 控制台
+├── veye-android/        # Android：Jetpack Compose + BLE + Room
+├── scripts/             # 仓库工具脚本（打包等）
+├── LICENSE
+└── README.md
+```
+
+| 子项目 | 技术栈 | 状态 | 文档 |
+|--------|--------|------|------|
+| [veye-cloud](./veye-cloud/) | FastAPI, vLLM, PostgreSQL, React | 生产可用 | [README](./veye-cloud/README.md) |
+| [veye-android](./veye-android/) | Kotlin, Compose, BLE, Room | v0.6.4 | [README](./veye-android/README.md) |
+
 ## 快速开始
+
+### 前置要求
+
+| 组件 | 要求 |
+|------|------|
+| 云端 | Linux + CUDA GPU、Docker、Python 3.10+、Node.js ≥ 18 |
+| Android | Android Studio、真机（BLE）、minSdk 26 |
 
 ### 1. 云端（veye-cloud）
 
@@ -51,26 +68,28 @@ pip install -r requirements.txt
 ./scripts/start_api.sh        # FastAPI :6006
 ```
 
-Web 控制台（需 Node.js ≥ 18）：
+Web 控制台：
 
 ```bash
 cd veye-cloud/frontend
-npm install && npm run dev    # 开发 :5173；AutoDL 可用 npm run dev:autodl
-# 或 npm run build 后由 FastAPI 挂载 app/static/web/
+npm install && npm run dev    # 开发 :5173
+# AutoDL 环境：npm run dev:autodl  # :6008
 ```
 
-完整步骤见 [veye-cloud/README.md](./veye-cloud/README.md)。
+详见 [veye-cloud/README.md](./veye-cloud/README.md)。
 
 ### 2. Android（veye-android）
 
 1. 用 Android Studio 打开 `veye-android/`
-2. 编辑 `app/src/main/java/com/veye/mobile/cloud/CloudConfig.kt` 中的 `BASE_URL` 为云端公网地址
-3. 复制 `local.properties.example` 为 `local.properties`（如需签名或高德地图 Key）
-4. 真机运行（BLE 需真机，最低 API 26）
+2. 配置 `app/src/main/java/com/veye/mobile/cloud/CloudConfig.kt` 中的 `BASE_URL`
+3. 复制 `local.properties.example` 为 `local.properties`（签名 / 高德地图 Key）
+4. 真机运行（BLE 需真机）
 
-详细说明见 [veye-android/README.md](./veye-android/README.md)。
+详见 [veye-android/README.md](./veye-android/README.md)。
 
-## 核心 API（Android / Web 共用）
+## API 参考
+
+Android / Web 共用以下 REST 端点：
 
 | 端点 | 方法 | 说明 |
 |------|------|------|
@@ -84,27 +103,34 @@ npm install && npm run dev    # 开发 :5173；AutoDL 可用 npm run dev:autodl
 
 可选鉴权：设置 `.env` 中 `API_KEY` 后，请求需带 Header `X-API-Key`。
 
-## 技术栈概览
+## 技术栈
 
 | 层级 | 技术 |
 |------|------|
-| 云端 API | FastAPI, SQLAlchemy, PostgreSQL |
+| 云端 API | FastAPI, SQLAlchemy, Alembic, PostgreSQL |
 | 视觉模型 | vLLM + Qwen2.5-VL-7B-Instruct |
-| Web UI | Vite 5, React 18, TypeScript |
+| 报告模型 | vLLM + Qwen2.5-7B-Instruct |
+| Web UI | Vite 5, React 18, TypeScript, Leaflet |
 | Android | Kotlin, Jetpack Compose, Room, Retrofit, BLE GATT |
 | 固件 | ESP32-C3（`veye-android/firmware/`） |
 
-## 环境要求
-
-- **云端**：Linux + CUDA GPU（AutoDL 等）、Docker、Python 3.10+、Node.js ≥ 18（前端）
-- **Android**：Android Studio、真机（BLE）、minSdk 26
-
 ## 安全说明
 
-- 勿将 `.env`、`local.properties`、keystore 提交到 Git（已在根 `.gitignore` 排除）
-- 生产环境请修改 `API_KEY`、`JWT_SECRET` 为强随机字符串
-- vLLM 端口 8001/8002 仅内网暴露，公网只反代 FastAPI 6006
+- **勿提交密钥**：`.env`、`local.properties`、`keystore/` 已在 `.gitignore` 中排除
+- **生产环境**：请修改 `API_KEY`、`JWT_SECRET` 为强随机字符串
+- **网络隔离**：vLLM 端口 8001/8002 仅内网暴露，公网只反代 FastAPI 6006
+
+## 打包发布
+
+```bash
+# 生成源码包（排除构建产物与密钥）
+bash scripts/package-release.sh [版本号] [输出目录]
+
+# 示例
+bash scripts/package-release.sh 1.0.0 /tmp
+# 输出：/tmp/veye-1.0.0.tar.gz
+```
 
 ## 许可证
 
-各子项目若未单独声明许可证，使用前请与项目维护者确认。
+本项目采用 [MIT License](LICENSE) 开源。
