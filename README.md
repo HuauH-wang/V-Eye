@@ -117,6 +117,7 @@ Android / Web 共用以下 REST 端点：
 ## 安全说明
 
 - **勿提交密钥**：`.env`、`local.properties`、`keystore/` 已在 `.gitignore` 中排除
+- **公开仓库脱敏**：AutoDL Token / 实例 ID / 真实反代域名请仅放在本地或环境变量，勿写入源码常量
 - **生产环境**：请修改 `API_KEY`、`JWT_SECRET` 为强随机字符串
 - **网络隔离**：vLLM 端口 8001/8002 仅内网暴露，公网只反代 FastAPI 6006
 
