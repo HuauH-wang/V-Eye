@@ -235,7 +235,7 @@ npm run dev:autodl
 
 浏览器使用实例详情里的 **`service_6008_domain`（https + 8443）** 打开页面；「API Base」仍留空，由 Vite 把 `/api` 转到本机 `http://127.0.0.1:6006` 的 FastAPI。
 
-若页面提示 **Blocked request … not allowed**，说明 Vite 校验了 `Host`：本仓库已在 `vite.config.ts` 默认 **`allowedHosts: true`**（允许经反代域名访问）。若你改过 `VITE_ALLOWED_HOSTS`，可设为 `all` 或逗号分隔的主机名，例如：`VITE_ALLOWED_HOSTS=uu885493-990d-93896148.westc.seetacloud.com`。
+若页面提示 **Blocked request … not allowed**，说明 Vite 校验了 `Host`：本仓库已在 `vite.config.ts` 默认 **`allowedHosts: true`**（允许经反代域名访问）。若你改过 `VITE_ALLOWED_HOSTS`，可设为 `all` 或逗号分隔的主机名，例如：`VITE_ALLOWED_HOSTS=your-proxy.example.com`。
 
 默认代理目标为 `http://127.0.0.1:6006`，可通过环境变量覆盖：
 

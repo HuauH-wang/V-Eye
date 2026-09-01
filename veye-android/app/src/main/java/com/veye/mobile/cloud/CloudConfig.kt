@@ -19,8 +19,8 @@ object CloudConfig {
   private const val KEY_DISPLAY_NAME = "display_name"
   private const val KEY_USERNAME = "username"
 
-  /** 编译内置默认；用户可在工程工具中心保存覆盖，或通过 AutoDL 一键拉取。 */
-  const val DEFAULT_BASE_URL: String = "https://u885493-r3wv-284831bb.westd.seetacloud.com:8443/"
+  /** 编译内置默认；请改为你的云端公网地址，或在 App 内保存覆盖 / 通过 AutoDL 一键拉取。 */
+  const val DEFAULT_BASE_URL: String = "https://your-domain.example/"
 
   @Volatile private var currentBaseUrl: String = DEFAULT_BASE_URL
   @Volatile private var currentApiKey: String = ""

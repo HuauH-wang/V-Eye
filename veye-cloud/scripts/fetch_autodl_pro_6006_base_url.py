@@ -32,8 +32,8 @@ import urllib.parse
 import urllib.request
 
 # 可选：仅私有部署时在此填写（勿 push 到公开 Git）。非空且环境变量未设置时生效。
-_EMBEDDED_AUTODL_TOKEN: str = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjg4NTQ5MywidXVpZCI6ImM0ZTliNDUzNmZmODNlNTIiLCJ0ZW5hbnQiOiJhdXRvZGwiLCJhdWQiOiJkZXZlbG9wX2FwaSJ9.0CcxiOknWgAAMzv4NBWViUSDkDfVfApouoTxu1Vh8YLqV8RswSjUmXRNk67faIjDI8c6Yo3Pp7aLm4yA3kV58g"
-_EMBEDDED_AUTODL_INSTANCE_UUID: str = "e67043990d-93896148"
+_EMBEDDED_AUTODL_TOKEN: str = ""
+_EMBEDDED_AUTODL_INSTANCE_UUID: str = ""
 
 
 def _request_snapshot(api_base: str, token: str, instance_uuid: str, use_post: bool) -> dict:

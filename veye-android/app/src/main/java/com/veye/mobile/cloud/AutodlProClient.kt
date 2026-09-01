@@ -24,11 +24,11 @@ object AutodlProClient {
   private const val API_BASE = "https://api.autodl.com"
   private val jsonMedia = "application/json; charset=utf-8".toMediaType()
 
-  /** 可选：仅私有构建填入。 */
-  const val EMBEDDED_AUTODL_DEVELOP_TOKEN: String = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjg4NTQ5MywidXVpZCI6ImM0ZTliNDUzNmZmODNlNTIiLCJ0ZW5hbnQiOiJhdXRvZGwiLCJhdWQiOiJkZXZlbG9wX2FwaSJ9.0CcxiOknWgAAMzv4NBWViUSDkDfVfApouoTxu1Vh8YLqV8RswSjUmXRNk67faIjDI8c6Yo3Pp7aLm4yA3kV58g"
+  /** 可选：仅私有构建填入（公开仓库请保持为空，改用界面或环境变量）。 */
+  const val EMBEDDED_AUTODL_DEVELOP_TOKEN: String = ""
 
-  /** 可选：控制台实例 ID，原样使用。 */
-  const val EMBEDDED_AUTODL_INSTANCE_ID: String = "e67043990d-93896148"
+  /** 可选：控制台实例 ID，原样使用（公开仓库请保持为空）。 */
+  const val EMBEDDED_AUTODL_INSTANCE_ID: String = ""
 
   private val http =
     OkHttpClient.Builder()
