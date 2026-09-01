@@ -1,0 +1,20 @@
+files:
+  - config.json
+  - device.json
+  - main.py
+  - board_link.py
+  - board_ble.py
+  - ble_bluez_worker.py
+  - board_tcp.py
+  - board_uart.py
+  - protocol.py
+  - uart_pins.py
+  - device_config.py
+  - ui_theme.py
+  - photo_key.py
+id: photo_capture
+name: Photo Key + ESP32 BLE Bridge
+version: 3.2.0
+author: embedded2026
+icon: ''
+desc: Voice/ESP32 bridge via BLE (PING/WAKE/PHOTO/CONFIRM)

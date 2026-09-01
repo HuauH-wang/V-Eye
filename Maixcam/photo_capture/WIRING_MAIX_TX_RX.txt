@@ -1,0 +1,20 @@
+MaixCAM 接线（固定）
+==============
+
+  PA9  (TX)  ----->  Maix RX
+  PA10 (RX)  <-----  Maix TX   （被 ST-Link 占用，U5 收不到回包）
+  GND        -------  GND
+
+焊桥 SB32/SB34 不能断 → PA10 回包进不了 U5，属硬件限制。
+
+当前策略：U5 经 PA9 单向发命令（PING/PHOTO/CONFIRM）。
+请在 Maix 屏幕上看是否出现 [UART<-] PING / PHOTO。
+
+测试：
+  1. 关闭 PC 串口监视器（减少 ST-Link 干扰）
+  2. 复位 U5，看 Maix 有无 [UART<-] PING
+  3. 说「拍照」，看 Maix 有无 [UART<-] PHOTO
+
+若 Maix 也收不到：查 GND、Maix A16/A17 是否 UART。
+
+若以后要 U5 收 Maix 回包：只能断 SB32+SB34，或只挪 Maix TX 一根线到空闲 RX 脚（再商量）。

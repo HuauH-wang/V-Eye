@@ -1,0 +1,9 @@
+{
+  "device_id": "MAXICAM-20F8AF63",
+  "device_secret": "PJsbcstE7tcG5wB_n42J5Fjl7xEba2QS",
+  "bind_uri": "veye://bind?v=2&did=MAXICAM-20F8AF63&sec=PJsbcstE7tcG5wB_n42J5Fjl7xEba2QS",
+  "upload_url": "https://u885493-990d-90bc6c00.westc.seetacloud.com:8443/camera/upload",
+  "base_url": "https://u885493-990d-90bc6c00.westc.seetacloud.com:8443/",
+  "scene": "toxic_plant",
+  "lang": "zh-CN"
+}

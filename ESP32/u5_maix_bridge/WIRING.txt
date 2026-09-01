@@ -1,0 +1,44 @@
+ESP32-C3 Super Mini 桥接接线
+==========================
+
+架构（当前联调）
+--------------
+  CI-03T --UART9600--> U5 --UART115200--> ESP32-C3 --BLE--> MaixCAM
+
+  详见:
+  GPIO_IOToggle\CI03T_ESP32_联调接线.md
+
+U5 ↔ ESP32（USART3 · 115200）
+-----------------------------
+  ★ v4.3 起改用 GPIO4/5，避开 USB 与 GPIO20/21 冲突：
+
+  U5 PB10 (TX)  ----->  ESP32 GPIO4 (RX)
+  U5 PB11 (RX)  <-----  ESP32 GPIO5 (TX)
+  U5 GND        -------  ESP32 GND
+  ESP32 供电: USB 或 3.3V（必须与 U5 共地）
+
+  （旧接线 GPIO20/21 已废弃，请改线）
+
+U5 ↔ CI-03T（USART2 · 9600）
+---------------------------
+  CI TX(PB5) -> U5 PD6
+  CI RX(PB6) <- U5 PD5
+  GND 共地
+
+上电顺序
+--------
+  1. ESP32（u5_maix_bridge.ino v4.3+）
+  2. Maix main.py（BLE 连 U5-MAIX-BRIDGE）
+  3. CI-03T
+  4. U5 复位
+
+Arduino
+-------
+  板型: ESP32C3 Dev Module
+  工具 → USB CDC On Boot → Enabled
+  文件: u5_maix_bridge.ino
+
+自检
+----
+  上电：板载蓝灯闪一下
+  说「拍照」：蓝灯连闪两下，U5 日志应出现 [ESP32] RX ACK:PHOTO
